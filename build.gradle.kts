@@ -23,6 +23,7 @@ dependencies {
         exclude("com.sun.xml.bind", "jaxb-impl")
         exclude("com.zaxxer", "HikariCP")
     }
+    annotationProcessor("org.projectlombok:lombok:1.18.24")
 }
 
 tasks.jar {
