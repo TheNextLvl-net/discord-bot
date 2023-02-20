@@ -5,9 +5,8 @@ services:
     restart: always
     volumes:
       - "data:/app"
-      - type: bind
-        bind:
-          create_host_path: true      
+      bind:
+        create_host_path: true      
     image: discord-bot:latest
 volumes:
   data: {}
