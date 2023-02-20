@@ -1,6 +1,7 @@
 name: discord-bot
 services:
-  discord:
+  discord-bot:
+    container_name: discord-bot
     build:
       .
     restart: always
