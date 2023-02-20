@@ -1,3 +1,4 @@
+name: discord-bot
 services:
   discord:
     build:
