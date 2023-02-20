@@ -4,7 +4,7 @@ services:
       .
     restart: always
     volumes:
-      - bot:/app
+      - "data:/app"
     image: discord-bot:latest
 volumes:
-  bot:
+  data:
