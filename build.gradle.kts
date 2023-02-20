@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "net.nonswag.tnl.discord-bot"
@@ -13,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.dv8tion:JDA:5.0.0-beta.3") {
+    implementation("net.dv8tion:JDA:5.0.0-beta.4") {
         exclude("org.jetbrains", "annotations")
         exclude("club.minnced", "opus-java")
         exclude("org.slf4j", "slf4j-api")
@@ -30,5 +31,11 @@ tasks.jar {
     manifest {
         attributes["Manifest-Version"] = "1.0"
         attributes["Main-Class"] = "net.nonswag.tnl.bot.Bot"
+    }
+}
+
+tasks {
+    jar {
+        dependsOn(shadowJar)
     }
 }

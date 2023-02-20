@@ -24,15 +24,15 @@ public class PermissionHelper {
         for (Role role : member.getRoles()) if (role.hasPermission(permissions)) return true;
         if (!(messageChannel instanceof TextChannel channel)) return false;
         PermissionOverride override = channel.getPermissionOverride(member);
-        if (override != null && hasPermission(member, override, permissions)) return true;
+        if (override != null && hasPermission(override, permissions)) return true;
         for (Role role : member.getRoles()) {
             override = channel.getPermissionOverride(role);
-            if (override != null && hasPermission(member, override, permissions)) return true;
+            if (override != null && hasPermission(override, permissions)) return true;
         }
         return false;
     }
 
-    private static boolean hasPermission(Member member, PermissionOverride override, Permission... permissions) {
+    private static boolean hasPermission(PermissionOverride override, Permission... permissions) {
         for (Permission permission : permissions) if (override.getAllowed().contains(permission)) return true;
         return false;
     }

@@ -19,8 +19,6 @@ import net.nonswag.tnl.bot.api.command.Command;
 import net.nonswag.tnl.bot.api.command.CommandListener;
 import net.nonswag.tnl.bot.api.embed.Embed;
 import net.nonswag.tnl.bot.api.mention.Mention;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -29,7 +27,6 @@ import java.util.concurrent.TimeUnit;
 public class CastCommand extends CommandListener {
     @Getter
     private static final CastCommand instance = new CastCommand();
-    private static final Logger logger = LoggerFactory.getLogger(SayCommand.class);
 
     private CastCommand() {
         super("cast [channel] [message] [mention]", "Let the bot say something in another channel");

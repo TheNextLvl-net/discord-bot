@@ -15,8 +15,6 @@ import net.dv8tion.jda.api.utils.FileUpload;
 import net.nonswag.tnl.bot.api.command.Command;
 import net.nonswag.tnl.bot.api.command.CommandListener;
 import net.nonswag.tnl.bot.api.embed.Embed;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nullable;
 import java.util.concurrent.TimeUnit;
@@ -24,7 +22,6 @@ import java.util.concurrent.TimeUnit;
 public class SayCommand extends CommandListener {
     @Getter
     private static final SayCommand instance = new SayCommand();
-    private static final Logger logger = LoggerFactory.getLogger(SayCommand.class);
 
     private SayCommand() {
         super("say [message]", "Let the bot say something");

@@ -1,7 +1,7 @@
 FROM gradle:7.6-alpine AS build
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN gradle jar
+RUN gradle shadowJar
 
 FROM openjdk:17-slim
 
