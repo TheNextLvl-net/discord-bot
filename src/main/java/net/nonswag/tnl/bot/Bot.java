@@ -39,8 +39,8 @@ public class Bot {
 
     static {
         GsonFile<Config> file = new GsonFile<>("configs", "config.json", new Config());
+        if (!file.getFile().exists()) file.save();
         config = file.getRoot();
-        file.save();
     }
 
     static {
@@ -79,7 +79,7 @@ public class Bot {
 
     private static void setupJda() {
         try {
-            JDABuilder builder = JDABuilder.createDefault(config.secretKey);
+            JDABuilder builder = JDABuilder.createDefault(config.token);
             for (GatewayIntent intent : GatewayIntent.values()) builder.enableIntents(intent);
             builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
             builder.disableIntents(GatewayIntent.GUILD_MESSAGE_TYPING);

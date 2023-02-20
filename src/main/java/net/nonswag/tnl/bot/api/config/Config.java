@@ -5,7 +5,7 @@ import net.nonswag.core.api.annotation.FieldsAreNonnullByDefault;
 
 @FieldsAreNonnullByDefault
 public class Config {
-    public String secretKey = "key", streamUrl = "https://twitch.tv/example", status = "";
+    public String token = "token", streamUrl = "https://twitch.tv/example", status = "";
     public Activity.ActivityType activity = Activity.ActivityType.STREAMING;
     public boolean idle, debug, trace;
 }
