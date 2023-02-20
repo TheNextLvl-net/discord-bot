@@ -4,9 +4,7 @@ services:
       .
     restart: always
     volumes:
-      - "data:/app"
-      bind:
-        create_host_path: true      
+      - "data:/app" 
     image: discord-bot:latest
 volumes:
   data: {}
