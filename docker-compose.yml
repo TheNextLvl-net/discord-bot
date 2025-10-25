@@ -6,5 +6,6 @@ services:
       - "data:/app"
     environment:
       DISCORD_TOKEN: DISCORD.TOKEN.EXAM_PLE
+      GUILD_ID: 1234567890
 volumes:
   data: { }
