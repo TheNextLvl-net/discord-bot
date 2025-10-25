@@ -1,4 +1,4 @@
-FROM gradle:7.6-alpine AS build
+FROM gradle:9.1-alpine AS build
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle shadowJar
