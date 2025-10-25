@@ -19,7 +19,8 @@ public class CommandRegistry {
         Bot.registerListener(gateway.getRestClient().getApplicationId().flatMap(applicationId -> {
             var service = gateway.getRestClient().getApplicationService();
             return Mono.when(commands.values().stream()
-                    .map(command -> service.createGuildApplicationCommand(applicationId, Bot.GUILD_ID, command.create()))
+                    .map(command -> command.create().build())
+                    .map(command -> service.createGuildApplicationCommand(applicationId, Bot.GUILD_ID, command))
                     .toList());
         }).then());
     }

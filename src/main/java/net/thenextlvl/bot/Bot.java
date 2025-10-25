@@ -3,7 +3,10 @@ package net.thenextlvl.bot;
 import discord4j.core.DiscordClient;
 import discord4j.core.event.domain.Event;
 import net.thenextlvl.bot.command.CommandRegistry;
+import net.thenextlvl.bot.command.DocsCommand;
 import net.thenextlvl.bot.command.ForkCommand;
+import net.thenextlvl.bot.command.LanguageCommand;
+import net.thenextlvl.bot.command.LogsCommand;
 import reactor.core.publisher.Mono;
 
 import java.util.HashSet;
@@ -14,12 +17,15 @@ public class Bot {
 
     private static final String TOKEN = System.getenv("DISCORD_TOKEN");
     private static final CommandRegistry commandRegistry = new CommandRegistry();
-    
+
     private static final Set<Mono<Void>> listeners = new HashSet<>();
 
     static void main() {
         DiscordClient.create(TOKEN).withGateway(gateway -> {
+            commandRegistry.register(new DocsCommand());
             commandRegistry.register(new ForkCommand());
+            commandRegistry.register(new LanguageCommand());
+            commandRegistry.register(new LogsCommand());
 
             commandRegistry.registerCommands(gateway);
             commandRegistry.registerDispatcher(gateway);
@@ -31,7 +37,7 @@ public class Bot {
             return Mono.when(listeners.stream().toList());
         }).block();
     }
-    
+
     public static void registerListener(Mono<Void> listener) {
         listeners.add(listener);
     }

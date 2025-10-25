@@ -2,6 +2,7 @@ package net.thenextlvl.bot.command;
 
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import discord4j.discordjson.json.ApplicationCommandRequest;
+import discord4j.discordjson.json.ImmutableApplicationCommandRequest;
 import reactor.core.publisher.Mono;
 
 public interface Command {
@@ -9,11 +10,10 @@ public interface Command {
 
     String getDescription();
 
-    default ApplicationCommandRequest create() {
+    default ImmutableApplicationCommandRequest.Builder create() {
         return ApplicationCommandRequest.builder()
                 .name(getName())
-                .description(getDescription())
-                .build();
+                .description(getDescription());
     }
 
     Mono<Void> execute(ChatInputInteractionEvent event);
