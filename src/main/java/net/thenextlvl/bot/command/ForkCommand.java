@@ -24,10 +24,7 @@ public class ForkCommand implements Command {
                 .addField("Official Resources", """
                         **Paper:** https://papermc.io/software/paper/
                         **Folia:** https://papermc.io/software/folia/""", false)
-                .addField("Why This Matters", """
-                        Forks may have different implementations, bugs, or features that are not present in the original projects. \
-                        To ensure we can properly help you, please test your issue on the official Paper or Folia builds first.""", false)
-                .footer("If the issue persists on official builds, please provide reproduction steps.", null)
+                .footer("If the issue persists, please provide reproduction steps.", null)
                 .build();
 
         var replySpec = InteractionApplicationCommandCallbackSpec.builder()

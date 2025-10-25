@@ -6,24 +6,33 @@ import net.thenextlvl.bot.command.CommandRegistry;
 import net.thenextlvl.bot.command.ForkCommand;
 import reactor.core.publisher.Mono;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Bot {
     public static final long GUILD_ID = Long.parseLong(System.getenv("GUILD_ID"));
 
+    private static final String TOKEN = System.getenv("DISCORD_TOKEN");
     private static final CommandRegistry commandRegistry = new CommandRegistry();
+    
+    private static final Set<Mono<Void>> listeners = new HashSet<>();
 
     static void main() {
-        System.out.printf("Starting bot... %s%n", GUILD_ID);
-        DiscordClient.create(System.getenv("DISCORD_TOKEN")).withGateway(gateway -> {
+        DiscordClient.create(TOKEN).withGateway(gateway -> {
             commandRegistry.register(new ForkCommand());
 
-            var registerCommands = commandRegistry.registerCommands(gateway);
-            var registerDispatcher = commandRegistry.registerDispatcher(gateway);
+            commandRegistry.registerCommands(gateway);
+            commandRegistry.registerDispatcher(gateway);
 
-            var debug = gateway.on(Event.class, event -> {
+            registerListener(gateway.on(Event.class, event -> {
                 System.out.println(event.getClass().getSimpleName());
                 return Mono.empty();
-            }).then();
-            return registerCommands.then(registerDispatcher.then(debug));
+            }).then());
+            return Mono.when(listeners.stream().toList());
         }).block();
+    }
+    
+    public static void registerListener(Mono<Void> listener) {
+        listeners.add(listener);
     }
 }

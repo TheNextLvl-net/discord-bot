@@ -4,7 +4,6 @@ import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
 import net.thenextlvl.bot.Bot;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,20 +15,20 @@ public class CommandRegistry {
         commands.put(command.getName(), command);
     }
 
-    public Mono<Void> registerCommands(GatewayDiscordClient gateway) {
-        return gateway.getRestClient().getApplicationId().publishOn(Schedulers.boundedElastic()).doOnSuccess(applicationId -> {
+    public void registerCommands(GatewayDiscordClient gateway) {
+        Bot.registerListener(gateway.getRestClient().getApplicationId().flatMap(applicationId -> {
             var service = gateway.getRestClient().getApplicationService();
-            for (var command : commands.values()) {
-                service.createGuildApplicationCommand(applicationId, Bot.GUILD_ID, command.create()).subscribe();
-            }
-        }).then();
+            return Mono.when(commands.values().stream()
+                    .map(command -> service.createGuildApplicationCommand(applicationId, Bot.GUILD_ID, command.create()))
+                    .toList());
+        }).then());
     }
 
-    public Mono<Void> registerDispatcher(GatewayDiscordClient gateway) {
-        return gateway.getEventDispatcher().on(ChatInputInteractionEvent.class, event -> {
+    public void registerDispatcher(GatewayDiscordClient gateway) {
+        Bot.registerListener(gateway.getEventDispatcher().on(ChatInputInteractionEvent.class, event -> {
             var command = commands.get(event.getCommandName());
             if (command == null) return Mono.empty();
             return command.execute(event);
-        }).then();
+        }).then());
     }
 }
