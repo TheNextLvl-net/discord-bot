@@ -1,11 +1,9 @@
 services:
   discord-bot:
-    container_name: discord-bot
     build: .
     restart: always
     volumes:
       - "data:/app"
-    image: discord-bot:latest
     environment:
       DISCORD_TOKEN: DISCORD.TOKEN.EXAM_PLE
 volumes:

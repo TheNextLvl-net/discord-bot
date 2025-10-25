@@ -7,11 +7,11 @@ group = "net.thenextlvl"
 version = "4.0.0"
 
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    toolchain.languageVersion = JavaLanguageVersion.of(25)
 }
 
 tasks.compileJava {
-    options.release.set(21)
+    options.release.set(25)
 }
 
 repositories {
@@ -21,6 +21,10 @@ repositories {
 
 dependencies {
     implementation("com.discord4j:discord4j-core:3.3.0")
+}
+
+tasks.shadowJar {
+    archiveFileName.set("discord-bot.jar")
 }
 
 tasks.jar {
