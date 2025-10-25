@@ -26,6 +26,7 @@ public class Bot {
             commandRegistry.register(new ForkCommand());
             commandRegistry.register(new LanguageCommand());
             commandRegistry.register(new LogsCommand());
+            commandRegistry.register(new VersionCommand());
 
             commandRegistry.registerCommands(gateway);
             commandRegistry.registerDispatcher(gateway);
