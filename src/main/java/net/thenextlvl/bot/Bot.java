@@ -1,7 +1,6 @@
 package net.thenextlvl.bot;
 
 import discord4j.core.DiscordClient;
-import discord4j.core.event.domain.Event;
 import net.thenextlvl.bot.command.CommandRegistry;
 import net.thenextlvl.bot.command.DocsCommand;
 import net.thenextlvl.bot.command.ForkCommand;
@@ -32,10 +31,6 @@ public class Bot {
             commandRegistry.registerCommands(gateway);
             commandRegistry.registerDispatcher(gateway);
 
-            registerListener(gateway.on(Event.class, event -> {
-                System.out.println(event.getClass().getSimpleName());
-                return Mono.empty();
-            }).then());
             return Mono.when(listeners.stream().toList());
         }).block();
     }
