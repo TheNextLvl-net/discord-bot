@@ -7,7 +7,7 @@ COPY --chown=gradle:gradle src /gradle/src
 
 RUN gradle shadowJar
 
-FROM openjdk:25-slim
+FROM eclipse-temurin:25
 
 WORKDIR /app
 
