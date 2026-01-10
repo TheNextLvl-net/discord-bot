@@ -6,7 +6,7 @@ import discord4j.core.spec.InteractionApplicationCommandCallbackSpec;
 import discord4j.rest.util.Color;
 import reactor.core.publisher.Mono;
 
-public class LanguageCommand implements Command {
+public final class LanguageCommand implements Command {
     @Override
     public String getName() {
         return "language";

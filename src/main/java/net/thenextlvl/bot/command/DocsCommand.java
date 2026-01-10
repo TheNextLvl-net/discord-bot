@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.Map;
 
-public class DocsCommand implements Command {
+public final class DocsCommand implements Command {
     private final Map<String, String> docsLinks = Map.ofEntries(
             Map.entry("Characters", "https://thenextlvl.net/docs/characters"),
             Map.entry("Cinematics", "https://thenextlvl.net/docs/cinematics"),

@@ -6,7 +6,7 @@ import discord4j.core.spec.InteractionApplicationCommandCallbackSpec;
 import discord4j.rest.util.Color;
 import reactor.core.publisher.Mono;
 
-public class LogsCommand implements Command {
+public final class LogsCommand implements Command {
     @Override
     public String getName() {
         return "logs";

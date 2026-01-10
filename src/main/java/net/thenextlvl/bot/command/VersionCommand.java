@@ -6,7 +6,7 @@ import discord4j.core.spec.InteractionApplicationCommandCallbackSpec;
 import discord4j.rest.util.Color;
 import reactor.core.publisher.Mono;
 
-public class VersionCommand implements Command {
+public final class VersionCommand implements Command {
     @Override
     public String getName() {
         return "version";

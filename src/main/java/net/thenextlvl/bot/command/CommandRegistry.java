@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommandRegistry {
+public final class CommandRegistry {
     private final Map<String, Command> commands = new HashMap<>();
 
     public void register(Command command) {

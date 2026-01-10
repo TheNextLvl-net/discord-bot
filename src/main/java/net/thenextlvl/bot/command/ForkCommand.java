@@ -6,7 +6,7 @@ import discord4j.core.spec.InteractionApplicationCommandCallbackSpec;
 import discord4j.rest.util.Color;
 import reactor.core.publisher.Mono;
 
-public class ForkCommand implements Command {
+public final class ForkCommand implements Command {
     @Override
     public String getName() {
         return "fork";
