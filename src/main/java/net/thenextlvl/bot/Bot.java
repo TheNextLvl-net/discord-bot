@@ -6,6 +6,7 @@ import net.thenextlvl.bot.command.DocsCommand;
 import net.thenextlvl.bot.command.ForkCommand;
 import net.thenextlvl.bot.command.LanguageCommand;
 import net.thenextlvl.bot.command.LogsCommand;
+import net.thenextlvl.bot.command.SparkCommand;
 import net.thenextlvl.bot.command.VersionCommand;
 import reactor.core.publisher.Mono;
 
@@ -26,6 +27,7 @@ public class Bot {
             commandRegistry.register(new ForkCommand());
             commandRegistry.register(new LanguageCommand());
             commandRegistry.register(new LogsCommand());
+            commandRegistry.register(new SparkCommand());
             commandRegistry.register(new VersionCommand());
 
             commandRegistry.registerCommands(gateway);
