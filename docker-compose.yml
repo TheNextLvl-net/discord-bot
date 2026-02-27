@@ -1,0 +1,11 @@
+services:
+  discord-bot:
+    image: ghcr.io/thenextlvl-net/discord-bot:latest
+    env_file: .env
+    restart: unless-stopped
+    networks:
+      - cloudflared
+
+networks:
+  cloudflared:
+    external: true

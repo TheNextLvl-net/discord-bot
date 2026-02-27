@@ -1,5 +1,14 @@
 name: Build
-on: [ pull_request, push ]
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
