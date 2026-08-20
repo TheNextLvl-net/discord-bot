@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.discord4j:discord4j-core:3.3.2")
+    implementation("com.discord4j:discord4j-core:3.3.3")
 }
 
 tasks.shadowJar {
