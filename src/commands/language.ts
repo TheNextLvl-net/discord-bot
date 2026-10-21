@@ -13,7 +13,8 @@ export const language: Command = {
                 embeds: [{
                     title: "This is an english speaking discord server",
                     description: "Please use english for all communication to ensure everyone can understand you.\n" +
-                        "If you are not fluent in english, you can use a translation tool like [DeepL](https://www.deepl.com/).\n",
+                        "If you are not fluent in english, you can use a translation tool like [DeepL](https://www.deepl.com/) " +
+                        "or ask an LLM like [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/).\n",
                     color: Color.SEA_GREEN,
                 }],
             },
