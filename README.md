@@ -1,10 +1,38 @@
 # DiscordBot
 
+A Discord slash-command bot running on [Cloudflare Workers](https://workers.cloudflare.com/)
+via Discord's HTTP interactions endpoint (no gateway connection needed).
+
+## Setup
+
 ````sh
-export DISCORD_TOKEN=ABCDE.ABCDE.ABCDE_ABCDE
-export GUILD_ID=1234567890
-docker build -t thenextlvl:discord-bot .
-docker run -e DISCORD_TOKEN -e GUILD_ID --name discord-bot -it thenextlvl:discord-bot
+bun install
+
+# Store the "Public Key" from the Discord developer portal as a Worker secret
+bunx wrangler secret put DISCORD_PUBLIC_KEY
+
+# Deploy the worker
+bun run deploy
+````
+
+Then, in the [Discord developer portal](https://discord.com/developers/applications), set
+**General Information → Interactions Endpoint URL** to your worker URL
+(e.g. `https://discord-bot.<your-subdomain>.workers.dev`).
+
+## Registering commands
+
+Commands are registered to a single guild. Run this whenever commands change:
+
+````sh
+cp .env.example .env   # fill in DISCORD_TOKEN and GUILD_ID
+bun run register
+````
+
+## Local development
+
+````sh
+cp .dev.vars.example .dev.vars   # fill in DISCORD_PUBLIC_KEY
+bun run dev
 ````
 
 ## Invite bot
